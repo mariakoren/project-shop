@@ -13,6 +13,7 @@ import MyHistory from "./pages/myhistory/myhistory";
 import Admin from "./pages/admin/admin";
 import AddItem from "./pages/admin/additem";
 import EditItem from "./pages/admin/edititem";
+import UserInfo from "./pages/admin/userinfo";
 function App() {
   return (
     <BrowserRouter>
@@ -27,6 +28,8 @@ function App() {
         <Route path="/admin" element={<Admin/>}/>
         <Route path="/admin/additem" element={<AddItem/>}/>
         <Route path="/admin/edititem" element={<EditItem/>}/>
+        <Route path="/admin/userinfo" element={<UserInfo/>}/>
+
 
       </Routes>
     </BrowserRouter>

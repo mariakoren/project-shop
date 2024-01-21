@@ -6,6 +6,7 @@ import authRoutes from "./routers/auth.js";
 import itemRoutes from "./routers/items.js";
 import invoiceRoutes from "./routers/invoice.js";
 import commentRoutes from "./routers/comments.js";
+import userRoutes from "./routers/users.js";
 import cookieParser from "cookie-parser";
 
 const app = express();
@@ -33,6 +34,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/items", itemRoutes);
 app.use("/api/comments", commentRoutes);
 app.use("/api/buy", invoiceRoutes);
+app.use("/api/users", userRoutes);
 
 app.listen(8800, () => {
     connect();

@@ -8,6 +8,7 @@ const Admin = () =>{
             <div className="adminContainer">
                 <button onClick={()=>navigate("/admin/additem")}>Dodać produkt</button>
                 <button onClick={()=>navigate("/admin/edititem")}>Edytować produkt</button>
+                <button onClick={()=>navigate("/admin/userinfo")}>Informacja o użytkownikach</button>
             </div>
         </div>
 

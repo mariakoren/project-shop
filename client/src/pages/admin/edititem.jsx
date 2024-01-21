@@ -14,13 +14,6 @@ const EditItem = () => {
   });
   const [editMode, setEditMode] = useState(false);
 
-//   useEffect(() => {
-//     if (data && data.length > 0) {
-//       setSelectedItemId(data[0]._id);
-//       setFormData(data[0]);
-//     }
-//   }, [data]);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
