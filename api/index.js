@@ -5,7 +5,7 @@ import cors from "cors";
 import authRoutes from "./routers/auth.js";
 import itemRoutes from "./routers/items.js";
 import invoiceRoutes from "./routers/invoice.js";
-import commentRoutes from "./models/comment.js";
+import commentRoutes from "./routers/comments.js";
 import cookieParser from "cookie-parser";
 
 const app = express();

@@ -8,7 +8,7 @@ import "./list.css";
 const List = () => {
     const location = useLocation();
     const [item, setItem] = useState(location.state.item);
-    const {data, loading, error, reFetch} = useFetch(`http://localhost:8800/api/items`);    
+    const {data, loading, error, reFetch} = useFetch(`http://localhost:8800/api/items/find/${item}`);    
     const handleClick = ()=> {
         reFetch()
     }

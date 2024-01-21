@@ -57,7 +57,6 @@ export const getQuantity = async (req, res) => {
     try {
         const item = await Item.findById(req.params.id)
         res.status(200).json(item.avaible)
-
     } catch (err) {
         res.status(500).json(err)
     }
@@ -75,3 +74,15 @@ export const getComments = async (req, res) => {
         res.status(500).json({ message: 'Internal server error', error: err.message });
     }
 }
+
+export const getFilteredItems = async (req, res) => {
+    try {
+        const { pattern } = req.params;
+        const query = pattern && pattern.trim() !== '' ? { name: { $regex: pattern, $options: 'i' } } : {};
+        const items = await Item.find(query);
+        res.status(200).json(items);
+    } catch (err) {
+        console.error('Error:', err);
+        res.status(500).json({ error: 'Wystąpił błąd serwera' });
+    }
+};
