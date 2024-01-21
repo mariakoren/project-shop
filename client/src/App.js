@@ -10,8 +10,9 @@ import Login from "./pages/login/login";
 import Register from "./pages/register/register";
 import AllItems from "./pages/allitems/allitems";
 import MyHistory from "./pages/myhistory/myhistory";
-
-
+import Admin from "./pages/admin/admin";
+import AddItem from "./pages/admin/additem";
+import EditItem from "./pages/admin/edititem";
 function App() {
   return (
     <BrowserRouter>
@@ -23,6 +24,10 @@ function App() {
         <Route path="/register" element={<Register/>}/>
         <Route path="/allitems" element={<AllItems/>}/>
         <Route path="/myhistory" element={<MyHistory/>}/>
+        <Route path="/admin" element={<Admin/>}/>
+        <Route path="/admin/additem" element={<AddItem/>}/>
+        <Route path="/admin/edititem" element={<EditItem/>}/>
+
       </Routes>
     </BrowserRouter>
   );
