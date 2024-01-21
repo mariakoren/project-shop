@@ -8,10 +8,10 @@ const CommentSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    date: {
-        type: String,
-        required: true
-    }
+    // date: {
+    //     type: String,
+    //     required: true
+    // }
 })
 
-export default mongoose.model("Item", CommentSchema)
+export default mongoose.model("Comments", CommentSchema)

@@ -1,4 +1,5 @@
 import Item from "../models/item.js";
+import Comments from "../models/comment.js";
 
 export const createItem = async (req, res) => {
     const newItem = new Item(req.body)
@@ -59,5 +60,18 @@ export const getQuantity = async (req, res) => {
 
     } catch (err) {
         res.status(500).json(err)
+    }
+}
+
+export const getComments = async (req, res) => {
+    try {
+        const item = await Item.findById(req.params.id);
+        if (!item) {
+            return res.status(404).json({ message: 'Item not found' });
+        }
+        const comments = await Comments.find({ _id: { $in: item.comments } });
+        res.status(200).json(comments);
+    } catch (err) {
+        res.status(500).json({ message: 'Internal server error', error: err.message });
     }
 }

@@ -5,11 +5,11 @@ import { createComment, deleteComment, getComments, updateComment } from "../con
 const router = express.Router();
 
 //create
-router.post("/", createComment)
+router.post("/:id", createComment)
 //update
-router.put("/:id", verifyAdmin, updateComment)
-//delete
-router.delete("/:id", verifyAdmin, deleteComment)
-//get all
-router.get("/", getComments)
+// router.put("/:id", verifyAdmin, updateComment)
+// //delete
+// router.delete("/:id", verifyAdmin, deleteComment)
+// //get all
+// router.get("/", getComments)
 export default router;

@@ -3,7 +3,6 @@ import NavBar from '../../components/navbar/navbar.jsx';
 import useFetch from '../../hooks/useFetch.jsx';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext.jsx';
-// import Reserve from '../../components/reserve/reserve.jsx';
 import Buy from '../../components/buy/buy.js';
 import "./item.css";
 
@@ -14,6 +13,7 @@ const Item = () => {
 
 
     const {data, loading, error, reFetch} = useFetch(`http://localhost:8800/api/items/${id}`);
+    const {data: dataCom, loading: loadingCom, error: errorCom, reFetch: reFetchCom} = useFetch(`http://localhost:8800/api/items/comments/${id}`);
     const {user} = useContext(AuthContext);
     const navigate = useNavigate();
 
@@ -25,6 +25,10 @@ const Item = () => {
         } else {
             navigate("/login");
         }
+    }
+
+    const handleChange = () => {
+
     }
 
     return (
@@ -48,6 +52,17 @@ const Item = () => {
                                 <b>{data.price}zł</b>
                             </h2>
                             <button onClick={handleClick} className="bookNow2">Kupuj teraz</button>
+                        </div>
+                        <div className="comments">
+                            <label>Komentarze:</label>
+                            {
+                                dataCom.map((com) => (
+                                    <div key={com._id}>
+                                        <div>napisane</div>
+                                    </div>
+                                ))
+                            }
+                            <input type="text" onChange={handleChange}></input>
                         </div>
                     </div>
                 </div>

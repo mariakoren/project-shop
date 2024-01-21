@@ -16,4 +16,6 @@ router.get("/avaible/:id", getQuantity)
 //get all
 router.get("/", getItems)
 
+router.get("/comments/:id", )
+
 export default router;

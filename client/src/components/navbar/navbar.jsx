@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import axios from "axios";
 import "./navbar.css";
-// import { AuthContext } from "../../context/AuthContext";
+import { AuthContext } from "../../context/AuthContext";
 import {Link} from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 
@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 const NavBar = () => {
 
     const navigate = useNavigate();
-    // const {user} = useContext(AuthContext);
+    const {user} = useContext(AuthContext);
 
     const handleLogin = () => {
             navigate("/login");   
@@ -36,7 +36,7 @@ const NavBar = () => {
                     <span className="logo">Shop</span>
                 </Link>
                 
-                {/* {user ? 
+                {user ? 
                     <div >
                         {user.username}
                         <button className="navButton" onClick={handleLogout}>Wyłoguj się</button>
@@ -47,7 +47,7 @@ const NavBar = () => {
                         <button onClick = {handleRegister} className="navButton">Zarejestruj</button>
                         <button onClick = {handleLogin} className="navButton">Załoguj się</button>
                     </div>
-                } */}
+                }
                 <button onClick={()=>navigate("/allservices")} className="navButton">Pokaż wszystkie towary</button>
                 <button onClick={()=>navigate("/opinions")} className="navButton">Pokaż opinii</button>
 
