@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import authRoutes from "./routers/auth.js";
 import itemRoutes from "./routers/items.js";
+import invoiceRoutes from "./routers/invoice.js";
 import cookieParser from "cookie-parser";
 
 const app = express();
@@ -29,6 +30,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/items", itemRoutes);
+app.use("/api/buy", invoiceRoutes);
 
 app.listen(8800, () => {
     connect();

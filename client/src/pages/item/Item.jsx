@@ -4,6 +4,7 @@ import useFetch from '../../hooks/useFetch.jsx';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext.jsx';
 // import Reserve from '../../components/reserve/reserve.jsx';
+import Buy from '../../components/buy/buy.js';
 import "./item.css";
 
 const Item = () => {
@@ -21,7 +22,6 @@ const Item = () => {
     const handleClick = () => {
         if (user) {
             setOpenModal(true);
-
         } else {
             navigate("/login");
         }
@@ -43,7 +43,6 @@ const Item = () => {
                         <div className="serviceDetailsText">
                             {data.fullDesc}
                         </div>
-
                         <div className="serviceDetailsPrice">
                             <h2>
                                 <b>{data.price}zł</b>
@@ -51,11 +50,9 @@ const Item = () => {
                             <button onClick={handleClick} className="bookNow2">Kupuj teraz</button>
                         </div>
                     </div>
-
-
                 </div>
             </div>}
-            {/* {openModal && <Reserve setOpen={setOpenModal} serviceId={id}/> } */}
+            {openModal && <Buy setOpen={setOpenModal} itemId={id}/> }
         </div>
     )
 }
