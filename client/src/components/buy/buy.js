@@ -1,14 +1,12 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import { useContext, useState, useEffect } from "react";
-import { SearchContext } from "../../context/SContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import {AuthContext} from "../../context/AuthContext";
+import "./buy.css";
 
 const Buy = ({ setOpen, itemId}) => {
-  // const { data } = useFetch(`http://localhost:8800/api/services/${serviceId}/availability`);
-//   const { item } = useContext(SearchContext);
   const {user} = useContext(AuthContext);
   const navigate = useNavigate();
   const [avaibleQuantity, setAvaibleQuantity] = useState(null);
@@ -49,12 +47,13 @@ const Buy = ({ setOpen, itemId}) => {
       axios.post('http://localhost:8800/api/buy', invoiceData)
         .then(response => {
           console.log('Invoice created successfully');
+          navigate("/");   
         })
         .catch(error => {
           console.error('Error creating invoice:', error.response ? error.response.data : error.message);
         });
 
-      navigate("/");     
+        
   };
 
   return (
@@ -69,8 +68,12 @@ const Buy = ({ setOpen, itemId}) => {
         <span>Dostępno: {avaibleQuantity} </span>
         <input
         type="number"
-        onChange={handleSelect}>
-        </input>
+        id="quantityInput"
+        name="quantity"
+        min={1} 
+        max={avaibleQuantity} 
+        onChange={handleSelect}
+      />
 
         
          <button onClick={handleClick} className="rButton">
