@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 // import cors from "cors";
 import authRoutes from "./routers/auth.js";
 import itemRoutes from "./routers/items.js";
+import cookieParser from "cookie-parser";
 
 const app = express();
 dotenv.config();
@@ -24,6 +25,7 @@ mongoose.connection.on("disconnected", ()=>{
 //     origin: 'http://localhost:3000',
 //     credentials: true
 // }));
+app.use(cookieParser);
 app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/item", itemRoutes);
