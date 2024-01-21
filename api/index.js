@@ -25,7 +25,7 @@ mongoose.connection.on("disconnected", ()=>{
 //     origin: 'http://localhost:3000',
 //     credentials: true
 // }));
-app.use(cookieParser);
+app.use(cookieParser());
 app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/item", itemRoutes);

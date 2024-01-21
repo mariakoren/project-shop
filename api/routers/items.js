@@ -1,66 +1,18 @@
 import express from "express";
-import Item from "../models/item.js";
+import { verifyAdmin, verifyToken, verifyUser } from "../utils/verifyToken.js";
+import { createItem, deleteItem, getItem, getItems, updateItem } from "../controllers/items.js";
 
 const router = express.Router();
 
 //create
-router.post("/", async (req, res) => {
-
-    const newItem = new Item(req.body)
-    try {
-        const savedItem = await newItem.save()
-        res.status(200).json(savedItem)
-
-    } catch (err) {
-        res.status(500).json(err)
-    }
-})
-
+router.post("/", verifyAdmin, createItem)
 //update
-
-router.put("/:id", async (req, res) => {
-    try {
-        const updatedItem = await Item.findByIdAndUpdate(req.params.id, {
-            $set: req.body
-        }, {new: true})
-        res.status(200).json(updatedItem)
-
-    } catch (err) {
-        res.status(500).json(err)
-    }
-})
-
+router.put("/:id", verifyAdmin, updateItem)
 //delete
-router.delete("/:id", async (req, res) => {
-    try {
-        await Item.findByIdAndDelete(req.params.id)
-        res.status(200).json("item has been deleted")
-
-    } catch (err) {
-        res.status(500).json(err)
-    }
-})
-
+router.delete("/:id", verifyAdmin, deleteItem)
 //get
-router.get("/:id", async (req, res) => {
-    try {
-        const item = await Item.findById(req.params.id)
-        res.status(200).json(item)
-
-    } catch (err) {
-        res.status(500).json(err)
-    }
-})
-
+router.get("/:id", getItem)
 //get all
-router.get("/", async (req, res) => {
-    try {
-        const items = await Item.find()
-        res.status(200).json(items)
-
-    } catch (err) {
-        res.status(500).json(err)
-    }
-})
+router.get("/", getItems)
 
 export default router;
