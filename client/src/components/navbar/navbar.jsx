@@ -48,7 +48,7 @@ const NavBar = () => {
                         <button onClick = {handleLogin} className="navButton">Załoguj się</button>
                     </div>
                 }
-                <button onClick={()=>navigate("/allservices")} className="navButton">Pokaż wszystkie towary</button>
+                <button onClick={()=>navigate("/allitems")} className="navButton">Pokaż wszystkie towary</button>
                 <button onClick={()=>navigate("/opinions")} className="navButton">Pokaż opinii</button>
 
             </div>

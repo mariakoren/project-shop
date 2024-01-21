@@ -8,7 +8,7 @@ import List from "./pages/list/List";
 import Item from "./pages/item/Item";
 import Login from "./pages/login/login";
 import Register from "./pages/register/register";
-
+import AllItems from "./pages/allitems/allitems";
 
 function App() {
   return (
@@ -19,6 +19,7 @@ function App() {
         <Route path="/items/:id" element={<Item/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/register" element={<Register/>}/>
+        <Route path="/allitems" element={<AllItems/>}/>
       </Routes>
     </BrowserRouter>
   );
