@@ -1,7 +1,7 @@
 import useFetch from "../../hooks/useFetch";
 
 const AllItems = () => {
-  const {data} = useFetch('http://localhost:8800/api/services')
+  const {data} = useFetch('http://localhost:8800/api/items')
   return (
     <div >
       {data.map((service) => (
