@@ -1,12 +1,13 @@
 import express from "express";
 import { verifyAdmin, verifyToken, verifyUser } from "../utils/verifyToken.js";
-import { createInvoice } from "../controllers/invoice.js";
+import { createInvoice, getInvoiceForPerson } from "../controllers/invoice.js";
 
 
 const router = express.Router();
 
 //create
 router.post("/", createInvoice)
+router.get("/find", getInvoiceForPerson)
 // //update
 // router.put("/:id", verifyAdmin, updateItem)
 // //delete

@@ -4,7 +4,7 @@ const InvoiceSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    itemDetails: [
+    itemDetails:
         {
             itemId: {
                 type: String,
@@ -15,7 +15,6 @@ const InvoiceSchema = new mongoose.Schema({
                 required: true
             }
         }
-    ],
 })
 
 export default mongoose.model("Invoice", InvoiceSchema)

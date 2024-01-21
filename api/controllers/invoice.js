@@ -1,5 +1,7 @@
 import Invoice from "../models/invoice.js";
 import Item from '../models/item.js';
+import User from '../models/user.js';
+import mongoose from 'mongoose';
 
 export const createInvoice = async (req, res) => {
     const { itemDetails } = req.body;
@@ -23,6 +25,27 @@ export const createInvoice = async (req, res) => {
         res.status(200).json(savedInvoice);
     } catch (err) {
         res.status(500).json(err);
+    }
+};
+
+export const getInvoiceForPerson = async (req, res) => {
+    const userIdParam = req.query.id;
+    if (!mongoose.Types.ObjectId.isValid(userIdParam)) {
+        return res.status(400).json({ message: 'Invalid user ID format.' });
+    }
+    try {
+        const user = await User.findById(userIdParam);
+        if (!user) {
+            return res.status(404).json({ message: 'Nie istnieje użytkownik o podanym ID.' });
+        }
+        const invoices = await Invoice.find({ userId: userIdParam });
+        if (invoices.length === 0) {
+            return res.status(404).json({ message: 'W tej chwili nie masz żadnych zakupów.' });
+        }
+        res.status(200).json(invoices);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Błąd podczas przetwarzania zapytania.' });
     }
 };
 

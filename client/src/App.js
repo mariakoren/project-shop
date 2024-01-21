@@ -9,6 +9,8 @@ import Item from "./pages/item/Item";
 import Login from "./pages/login/login";
 import Register from "./pages/register/register";
 import AllItems from "./pages/allitems/allitems";
+import MyHistory from "./pages/myhistory/myhistory";
+
 
 function App() {
   return (
@@ -20,6 +22,7 @@ function App() {
         <Route path="/login" element={<Login/>}/>
         <Route path="/register" element={<Register/>}/>
         <Route path="/allitems" element={<AllItems/>}/>
+        <Route path="/myhistory" element={<MyHistory/>}/>
       </Routes>
     </BrowserRouter>
   );
