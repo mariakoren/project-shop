@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
-// import cors from "cors";
+import cors from "cors";
 import authRoutes from "./routers/auth.js";
 import itemRoutes from "./routers/items.js";
 import cookieParser from "cookie-parser";
@@ -21,16 +21,14 @@ mongoose.connection.on("disconnected", ()=>{
     console.log("mongoDB disconnected")
 })
 
-// app.use(cors({
-//     origin: 'http://localhost:3000',
-//     credentials: true
-// }));
+app.use(cors({
+    origin: 'http://localhost:3000',
+    credentials: true
+}));
 app.use(cookieParser());
 app.use(express.json());
 app.use("/api/auth", authRoutes);
-app.use("/api/item", itemRoutes);
-
-
+app.use("/api/items", itemRoutes);
 
 app.listen(8800, () => {
     connect();
