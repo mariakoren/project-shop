@@ -5,11 +5,13 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext.jsx';
 import Buy from '../../components/buy/buy.js';
 import "./item.css";
+import axios from 'axios';
 
 const Item = () => {
     const location =useLocation();
     const id =location.pathname.split("/")[2];
     const [openModal, setOpenModal] = useState(false);
+    const [content, setContent] = useState('');
 
 
     const {data, loading, error, reFetch} = useFetch(`http://localhost:8800/api/items/${id}`);
@@ -27,7 +29,20 @@ const Item = () => {
         }
     }
 
-    const handleChange = () => {
+    const handleChange = (e) => {
+        setContent(e.target.value);
+      };
+
+    const addComment = async () => {
+        try {
+            const comment = {
+                content: content,
+                username: user.username
+            }
+            await axios.post(`http://localhost:8800/api/comments/${id}`, comment, { withCredentials: true });
+            reFetch();
+            window.location.reload();
+          } catch (error) { }
 
     }
 
@@ -57,12 +72,18 @@ const Item = () => {
                             <label>Komentarze:</label>
                             {
                                 dataCom.map((com) => (
-                                    <div key={com._id}>
-                                        <div>napisane</div>
+                                    <div key={com._id} className='comment'>
+                                        <b>{com.username}</b>
+                                        <div>{com.content}</div>
                                     </div>
                                 ))
                             }
-                            <input type="text" onChange={handleChange}></input>
+                            {user ? 
+                            <div>
+                                <input type="text" value={content} onChange={handleChange}></input> 
+                                <button onClick={addComment}>dodaj komentarz</button>
+                            </div>
+                            : <></>}
                         </div>
                     </div>
                 </div>

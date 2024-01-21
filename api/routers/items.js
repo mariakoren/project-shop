@@ -1,6 +1,6 @@
 import express from "express";
 import { verifyAdmin, verifyToken, verifyUser } from "../utils/verifyToken.js";
-import { createItem, deleteItem, getFilteredItems, getItem, getItems, getQuantity, updateItem } from "../controllers/items.js";
+import { createItem, deleteItem, getComments, getFilteredItems, getItem, getItems, getQuantity, updateItem } from "../controllers/items.js";
 
 const router = express.Router();
 
@@ -14,11 +14,12 @@ router.delete("/:id", verifyAdmin, deleteItem)
 router.get("/:id", getItem)
 router.get("/avaible/:id", getQuantity)
 router.get("/find/:pattern", getFilteredItems);
+router.get("/comments/:id", getComments)
 //get all
 
 router.get("/", getItems)
 
-// router.get("/comments/:id")
+
 
 
 
