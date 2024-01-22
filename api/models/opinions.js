@@ -11,7 +11,6 @@ const OpinionsSchema = new mongoose.Schema({
     },
     date: {
         type: Date,
-       
     },
 },{timestamps: true})
 
