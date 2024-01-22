@@ -77,7 +77,7 @@ const Buy = ({ setOpen, itemId}) => {
 
         
          <button onClick={handleClick} className="rButton">
-          Zarezerwuj teraz!
+          Kupuj teraz!
         </button>
       </div>
     </div>

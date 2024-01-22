@@ -33,9 +33,6 @@ function App() {
         <Route path="/admin/edititem" element={<EditItem/>}/>
         <Route path="/admin/userinfo" element={<UserInfo/>}/>
         <Route path="/admin/allinvoices" element={<AllInvoices/>}/>
-
-
-
       </Routes>
     </BrowserRouter>
   );
