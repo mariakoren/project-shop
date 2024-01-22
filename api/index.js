@@ -8,7 +8,7 @@ import invoiceRoutes from "./routers/invoice.js";
 import commentRoutes from "./routers/comments.js";
 import userRoutes from "./routers/users.js";
 import cookieParser from "cookie-parser";
-
+import opinionRoutes from "./routers/opinions.js";
 const app = express();
 dotenv.config();
 const connect = async () => {
@@ -35,6 +35,8 @@ app.use("/api/items", itemRoutes);
 app.use("/api/comments", commentRoutes);
 app.use("/api/buy", invoiceRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/opinions", opinionRoutes);
+
 
 
 // const SseChannel = require('sse-channel');

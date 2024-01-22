@@ -14,6 +14,8 @@ import Admin from "./pages/admin/admin";
 import AddItem from "./pages/admin/additem";
 import EditItem from "./pages/admin/edititem";
 import UserInfo from "./pages/admin/userinfo";
+import Opinions from "./pages/opinions/opinions";
+
 function App() {
   return (
     <BrowserRouter>
@@ -25,6 +27,7 @@ function App() {
         <Route path="/register" element={<Register/>}/>
         <Route path="/allitems" element={<AllItems/>}/>
         <Route path="/myhistory" element={<MyHistory/>}/>
+        <Route path="/opinions" element={<Opinions/>}/>
         <Route path="/admin" element={<Admin/>}/>
         <Route path="/admin/additem" element={<AddItem/>}/>
         <Route path="/admin/edititem" element={<EditItem/>}/>
