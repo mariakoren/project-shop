@@ -15,7 +15,7 @@ import AddItem from "./pages/admin/additem";
 import EditItem from "./pages/admin/edititem";
 import UserInfo from "./pages/admin/userinfo";
 import Opinions from "./pages/opinions/opinions";
-
+import AllInvoices from "./pages/admin/allinvoices";
 function App() {
   return (
     <BrowserRouter>
@@ -32,6 +32,8 @@ function App() {
         <Route path="/admin/additem" element={<AddItem/>}/>
         <Route path="/admin/edititem" element={<EditItem/>}/>
         <Route path="/admin/userinfo" element={<UserInfo/>}/>
+        <Route path="/admin/allinvoices" element={<AllInvoices/>}/>
+
 
 
       </Routes>

@@ -49,44 +49,39 @@ export const getInvoiceForPerson = async (req, res) => {
     }
 };
 
-// export const updateItem = async (req, res) => {
-//     try {
-//         const updatedItem = await Item.findByIdAndUpdate(req.params.id, {
-//             $set: req.body
-//         }, {new: true})
-//         res.status(200).json(updatedItem)
+export const getInvoices = async (req, res) => {
+    try {
+        const invoices = await Invoice.find();
+        if (invoices.length === 0) {
+            return res.status(404).json({ message: 'W tej chwili nie ma żadnych zakupów.' });
+        }
+        res.status(200).json(invoices);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Błąd podczas przetwarzania zapytania.' });
+    }
+};
 
-//     } catch (err) {
-//         res.status(500).json(err)
-//     }
-// }
 
-// export const deleteItem = async (req, res) => {
-//     try {
-//         await Item.findByIdAndDelete(req.params.id)
-//         res.status(200).json("item has been deleted")
 
-//     } catch (err) {
-//         res.status(500).json(err)
-//     }
-// }
 
-// export const getItem = async (req, res) => {
-//     try {
-//         const item = await Item.findById(req.params.id)
-//         res.status(200).json(item)
 
-//     } catch (err) {
-//         res.status(500).json(err)
-//     }
-// }
+export const deleteInvoice = async (req, res) => {
+    const { id: invoiceId } = req.params;
+    try {
+        const deletedInvoice = await Invoice.findByIdAndDelete(invoiceId);
+        if (!deletedInvoice) {
+            return res.status(404).json({ error: "Nie znaleziono faktury o podanym ID." });
+        }
+        const { itemDetails } = deletedInvoice;
+        const { itemId, quantity } = itemDetails;
+        await Item.updateOne(
+            { _id: itemId },
+            { $inc: { avaible: quantity } }
+        );
+        res.status(200).json({ message: "Faktura usunięta pomyślnie." });
+    } catch (err) {
+        res.status(500).json(err);
+    }
+};
 
-// export const getItems = async (req, res) => {
-//     try {
-//         const items = await Item.find()
-//         res.status(200).json(items)
-
-//     } catch (err) {
-//         res.status(500).json(err)
-//     }
-// }
